@@ -1,7 +1,7 @@
 
 - [x] Store data in `localStorage`
 - [x] Rich text editor
-- [ ] Dark theme
+- [x] Dark theme
 - [ ] 404 page
 - [ ] Deploy (issue with React Router)
 - [ ] The `debug` packages

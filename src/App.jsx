@@ -3,10 +3,14 @@ import { faker } from "@faker-js/faker";
 import { Routes, Route } from "react-router-dom";
 import Edit from "./pages/Edit";
 import Home from "./pages/Home";
+import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 
 function App() {
   const [notes, setNotes] = useState([]);
   const [query, setQuery] = useState("");
+  const [colorScheme, setColorScheme] = useState("light");
+  const toggleColorScheme = (value) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   useEffect(() => {
     setNotes(JSON.parse(window.localStorage.getItem("notes", notes)));
@@ -45,21 +49,32 @@ function App() {
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Home
-            notes={notes}
-            query={query}
-            setQuery={setQuery}
-            add={add}
-            remove={remove}
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                notes={notes}
+                query={query}
+                setQuery={setQuery}
+                add={add}
+                remove={remove}
+              />
+            }
           />
-        }
-      />
-      <Route path="/edit" element={<Edit edit={edit} remove={remove} />} />
-    </Routes>
+          <Route path="/edit" element={<Edit edit={edit} remove={remove} />} />
+        </Routes>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 

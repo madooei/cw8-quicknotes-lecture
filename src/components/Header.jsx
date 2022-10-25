@@ -1,8 +1,9 @@
 import { IconNote } from "@tabler/icons";
-import { Grid, Button } from "@mantine/core";
+import { Grid, Button, Group } from "@mantine/core";
 import Search from "./Search";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import Toggle from "./Toggle";
 
 function Header(props) {
   const { query, setQuery, add } = props;
@@ -15,18 +16,20 @@ function Header(props) {
 
   return (
     <Grid>
-      <Grid.Col span={10}>
+      <Grid.Col span={9}>
         <Search query={query} setQuery={setQuery} />
       </Grid.Col>
-      <Grid.Col span={2}>
-        <Button
-          onClick={handleOnClick}
-          fullWidth
-          variant="default"
-          leftIcon={<IconNote />}
-        >
-          Add Note
-        </Button>
+      <Grid.Col span={3}>
+        <Group position="right">
+          <Button
+            onClick={handleOnClick}
+            variant="default"
+            leftIcon={<IconNote />}
+          >
+            Add Note
+          </Button>
+          <Toggle />
+        </Group>
       </Grid.Col>
     </Grid>
   );
