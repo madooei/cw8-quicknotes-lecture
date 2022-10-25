@@ -14,7 +14,9 @@ function App() {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   useEffect(() => {
-    setNotes(JSON.parse(window.localStorage.getItem("notes", notes)));
+    const storedNotes = window.localStorage.getItem("notes", notes);
+    const initNote = storedNotes ? JSON.parse(storedNotes) : [];
+    setNotes(initNote);
   }, []);
 
   useEffect(() => {
