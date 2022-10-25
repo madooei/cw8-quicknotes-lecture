@@ -3,6 +3,7 @@ import { TextInput, Textarea } from "@mantine/core";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate, useLocation } from "react-router-dom";
+import { RichTextEditor } from "@mantine/rte";
 
 function Edit(props) {
   const { edit, remove } = props;
@@ -29,10 +30,6 @@ function Edit(props) {
     setTitle(event.target.value);
   };
 
-  const handleTextChange = (event) => {
-    setText(event.target.value);
-  };
-
   const handleSave = () => {
     edit(id, title, text);
     navigate("/", { replace: true });
@@ -55,14 +52,11 @@ function Edit(props) {
           value={title}
           onChange={handleTitleChange}
         />
-        <Textarea
-          placeholder="Your note's text"
-          label="Text"
-          withAsterisk
-          autosize
-          minRows={5}
+        <RichTextEditor
+          id="rte"
+          defaultValue={"Your note's text"}
           value={text}
-          onChange={handleTextChange}
+          onChange={setText}
         />
         <Group position="center" spacing="xl" grow>
           <Button variant="subtle" onClick={handleCancel}>

@@ -8,7 +8,9 @@ function Note(props) {
   return (
     <Accordion.Item value={note.title}>
       <NoteControl note={note} remove={remove} />
-      <Accordion.Panel>{note.text}</Accordion.Panel>
+      <Accordion.Panel>
+        <div dangerouslySetInnerHTML={{ __html: note.text}}></div>
+      </Accordion.Panel>
     </Accordion.Item>
   );
 }
