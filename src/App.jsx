@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Edit from "./pages/Edit";
 import Home from "./pages/Home";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -72,6 +73,7 @@ function App() {
             }
           />
           <Route path="/edit" element={<Edit edit={edit} remove={remove} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </MantineProvider>
     </ColorSchemeProvider>
