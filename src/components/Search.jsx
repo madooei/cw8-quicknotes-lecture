@@ -1,11 +1,15 @@
 import { Input } from "@mantine/core";
 import { IconSearch } from "@tabler/icons";
 import PropTypes from "prop-types";
+import Debug from "debug";
+
+const debug = new Debug("quicknotes:components:Search.jsx");
 
 function Search(props) {
   const { query, setQuery } = props;
 
   const handleOnChange = (event) => {
+    debug(`Updating query value from ${query} to ${event.target.value}`);
     setQuery(event.target.value);
   };
 

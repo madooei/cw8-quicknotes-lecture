@@ -1,9 +1,17 @@
 import Note from "./Note";
 import PropTypes from "prop-types";
 import { Accordion } from "@mantine/core";
+import Debug from "debug";
+import { useEffect } from "react";
+
+const debug = new Debug("quicknotes:components:Notes.jsx");
 
 function Notes(props) {
   const { notes, query, remove } = props;
+
+  useEffect(() => {
+    debug("Query is update! Will filter the notes..")
+  }, [query])
 
   return (
     <Accordion chevronPosition="left">
