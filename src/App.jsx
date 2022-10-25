@@ -9,16 +9,12 @@ function App() {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    const fakeNotes = [];
-    for (let index = 0; index < 5; index++) {
-      fakeNotes.push({
-        id: faker.datatype.uuid(),
-        title: faker.lorem.sentence(),
-        text: faker.lorem.paragraph(),
-      });
-    }
-    setNotes(fakeNotes);
+    setNotes(JSON.parse(window.localStorage.getItem("notes", notes)));
   }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   const remove = (id) => {
     setNotes((notes) => notes.filter((note) => note.id !== id));
